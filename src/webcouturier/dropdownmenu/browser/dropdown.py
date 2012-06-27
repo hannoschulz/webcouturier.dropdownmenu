@@ -175,7 +175,7 @@ class DropdownMenuViewlet(common.GlobalSectionsViewlet):
         queryBuilder = DropdownQueryBuilder(tabObj)
         query = queryBuilder()
 
-        data = buildFolderTree(tabObj, obj=tabObj, query=query,
+        data = buildFolderTree(tabObj, obj=self.context, query=query,
                                strategy=strategy)
 
         bottomLevel = self.data.bottomLevel or self.properties.getProperty(
