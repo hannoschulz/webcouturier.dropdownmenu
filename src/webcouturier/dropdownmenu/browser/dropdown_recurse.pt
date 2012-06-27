@@ -16,8 +16,14 @@
                 item_remote_url node/getRemoteUrl;
                 use_remote_url  node/useRemoteUrl | nothing;
                 item_icon       nocall:node/item_icon;
-                normalizeString nocall: context/plone_utils/normalizeString;"
-    tal:condition="python:bottomLevel &lt;= 0 or level &lt;= bottomLevel">
+                is_in_path      node/currentParent;
+                is_current      node/currentItem;
+                is_current_class python:is_current and ' navTreeCurrentNode' or '';
+                is_in_path_class python:is_in_path and ' navTreeItemInPath' or '';
+                normalizeString nocall: context/plone_utils/normalizeString;
+                current_or_in_path_classes python: is_current_class + is_in_path_class"
+    tal:condition="python:bottomLevel &lt;= 0 or level &lt;= bottomLevel"
+    tal:attributes="class current_or_in_path_classes">
 
     <tal:level define="has_children nocall:children;
                        children_class python:has_children and ' hasDropDown' or '';
